@@ -116,6 +116,16 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
                         {
                             var nihongoData = GetNihongoData();
 
+                            try
+                            {
+                                nihongoData.Validate();
+                            }
+                            catch (Exception ex)
+                            {
+                                await Shell.Current.DisplayAlert("Invalid", ex.Message, "OK");
+                                return;
+                            }
+
                             await managementService.SaveNihongoDataAsync(nihongoData);
 
                             await Shell.Current.DisplayAlert("Success", "Data Saved Successfully!", "OK");
@@ -147,28 +157,13 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
                 }
             };
         }
-
-        private NihongoData GetNihongoData()
-        {
-            return new NihongoData
-            {
-                Id = Guid.NewGuid(),
-                Type = _type.Text,
-                Level = _level.Text,
-                Topic = _topic.Text,
-                Reference = _reference.Text,
-                NihongoSentence = _nihongoSentence.Text,
-                EnglishSentence = _englishSentence.Text
-            };
-        }
-
         private void ApplyTemplate(InputNihongoDataTemplate template)
         {
             if (!string.IsNullOrWhiteSpace(template.Type))
             {
                 _type.Text = template.Type;
             }
-            
+
             if (!string.IsNullOrWhiteSpace(template.Level))
             {
                 _level.Text = template.Level;
@@ -183,6 +178,20 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
             {
                 _topic.Text = template.Topic;
             }
+        }
+
+        private NihongoData GetNihongoData()
+        {
+            return new NihongoData
+            {
+                Id = Guid.NewGuid(),
+                Type = _type.Text,
+                Level = _level.Text,
+                Topic = _topic.Text,
+                Reference = _reference.Text,
+                NihongoSentence = _nihongoSentence.Text,
+                EnglishSentence = _englishSentence.Text
+            };
         }
     }
 }
