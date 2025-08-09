@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChicoKoodo.AndroidApp.Pages.NihongoBenkyou"
+             Title="NihongoBenkyou">
+    <VerticalStackLayout Spacing="15">
+        <Button
+            Text="Input Data"
+            HeightRequest="45"
+            WidthRequest="185"
+            Clicked="OnAddNihongoDataClicked"
+            SemanticProperties.Hint="Save Nihongo Data" />
+
+        <Button
+            Text="View Data"
+            HeightRequest="45"
+            WidthRequest="185"
+            Clicked="OnViewNihongoDataClicked"
+            SemanticProperties.Hint="View Nihongo Data"/>
+
+        <Button
+            Text="Practice"
+            HeightRequest="45"
+            WidthRequest="185"
+            Clicked="OnPracticeClicked"
+            SemanticProperties.Hint="Practice Nihongo Data" />
+    </VerticalStackLayout>
+</ContentPage>

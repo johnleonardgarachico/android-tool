@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChicoKoodo.AndroidApp.Pages.NihongoPractice"
+             Title="NihongoPractice">
+
+    <Grid Padding="20" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+
+        <!-- 🧮 Score Label Top Right -->
+        <Label 
+            Grid.Row="0" Grid.Column="1"
+            Text="{Binding Score}"
+            HorizontalOptions="End"
+            FontAttributes="Bold"
+            FontSize="14"
+            TextColor="DarkSlateGray" />
+
+        <!-- ❓ Question Label -->
+        <Label 
+            Grid.Row="1" Grid.ColumnSpan="2"
+            Text="{Binding Question}"
+            FontSize="18"
+            Margin="0,20,0,10"
+            TextColor="Black" />
+
+        <!-- ✍️ Answer Input + OK Button -->
+        <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2"
+                               Spacing="10"
+                               VerticalOptions="Start"
+                               Margin="0,0,0,10">
+            <Entry x:Name="AnswerEntry"
+                   Placeholder="Type your answer here"
+                   Completed="OnSubmitAnswerClicked"
+                   HorizontalOptions="FillAndExpand" />
+
+            <Button 
+                Text="OK"
+                BackgroundColor="LightGreen"
+                TextColor="Black"
+                Clicked="OnSubmitAnswerClicked" />
+        </HorizontalStackLayout>
+
+        <!-- Optional: You can add feedback or status message in Row 3 -->
+        <Label 
+            x:Name="FeedbackLabel"
+            Grid.Row="3" Grid.ColumnSpan="2"
+            Text=""
+            FontSize="14"
+            TextColor="DarkRed" />
+    </Grid>
+</ContentPage>
