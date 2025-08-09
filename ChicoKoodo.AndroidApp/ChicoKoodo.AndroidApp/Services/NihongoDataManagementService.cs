@@ -9,6 +9,8 @@ namespace ChicoKoodo.AndroidApp.Services
     {
         private readonly IFileHelper _fileHelper;
 
+        public InputNihongoDataTemplate InputTemplate { get; set; } = new();
+
         public NihongoDataManagementService(IFileHelper fileHelper)
         {
             ArgumentNullException.ThrowIfNull(fileHelper, nameof(fileHelper));

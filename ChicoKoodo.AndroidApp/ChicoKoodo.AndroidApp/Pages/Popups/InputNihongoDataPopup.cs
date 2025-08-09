@@ -27,6 +27,8 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
 
         public InputNihongoDataPopup(NihongoDataManagementService managementService)
         {
+            ApplyTemplate(managementService.InputTemplate);
+            
             CanBeDismissedByTappingOutsideOfPopup = false;
             Padding = 20;
             BackgroundColor = Colors.White;
@@ -122,6 +124,23 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
                     },
                     new Button
                     {
+                        Text = "Set As Default",
+                        Command = new Command(async () =>
+                        {
+                            managementService.InputTemplate = new()
+                            {
+                                Level = _level.Text,
+                                Topic = _topic.Text,
+                                Type = _type.Text,
+                                Reference = _reference.Text,
+                            };
+
+                            await Shell.Current.DisplayAlert("Success", "Template Saved Successfully!", "OK");
+                            await Shell.Current.ClosePopupAsync("Completed Successfully");
+                        })
+                    },
+                    new Button
+                    {
                         Text = "Cancel",
                         Command = new Command(() => Shell.Current.ClosePopupAsync("Canceled"))
                     }
@@ -141,6 +160,29 @@ namespace ChicoKoodo.AndroidApp.Pages.Popups
                 NihongoSentence = _nihongoSentence.Text,
                 EnglishSentence = _englishSentence.Text
             };
+        }
+
+        private void ApplyTemplate(InputNihongoDataTemplate template)
+        {
+            if (!string.IsNullOrWhiteSpace(template.Type))
+            {
+                _type.Text = template.Type;
+            }
+            
+            if (!string.IsNullOrWhiteSpace(template.Level))
+            {
+                _level.Text = template.Level;
+            }
+
+            if (!string.IsNullOrWhiteSpace(template.Reference))
+            {
+                _reference.Text = template.Reference;
+            }
+
+            if (!string.IsNullOrWhiteSpace(template.Topic))
+            {
+                _topic.Text = template.Topic;
+            }
         }
     }
 }
