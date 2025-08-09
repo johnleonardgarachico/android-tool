@@ -86,6 +86,14 @@ public partial class NihongoPractice : ContentPage, INotifyPropertyChanged
         AnswerEntry.Text = string.Empty;
         _dataForPractice = (await _nihongoDataManagementService.GetNihongoDataAsync(Type, Level)).ToList();
 
+        if (!_dataForPractice.Any())
+        {
+            await Shell.Current.DisplayAlert("Engggkk", "No Data Found using the filter you provided", "OK");
+            await Shell.Current.GoToAsync("..");
+
+            return;
+        }
+
         Shuffle(_dataForPractice);
 
         Question = _dataForPractice[_questionCurrentIndex].EnglishSentence;

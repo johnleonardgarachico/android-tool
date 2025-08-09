@@ -10,10 +10,10 @@
         <Label 
             Grid.Row="0" Grid.Column="1"
             Text="{Binding Score}"
+            TextColor="{AppThemeBinding Light=DarkSlateGray, Dark=White}"
             HorizontalOptions="End"
             FontAttributes="Bold"
-            FontSize="14"
-            TextColor="DarkSlateGray" />
+            FontSize="14" />
 
         <!-- ❓ Question Label -->
         <Label 
